@@ -1,0 +1,129 @@
+######################
+#   Imports
+######################
+
+  # Class imports
+import usermethods
+import documentmethods
+import searchmethods
+import tagmethods
+import commentmethods
+
+######################
+#   Declarations
+######################
+foaf = Namespace("http://xmlns.com/foaf/0.1/")
+
+######################
+#   Class
+######################
+
+class database():
+"""
+In het algemeen returnen methodes een succesboolean, en niets anders; uitzondering zijn methodes waarvan de naam begint met 'get', en zoekmethoden.
+"""
+
+### initialisatie
+  def __init__("usermethods", "pagemethods", "searchmethods"):
+	# TODO: inlezen database
+	# TODO: zoeken naar hoogste huidge ID
+	
+
+### Document methods:
+#
+# For methods to get the comments on a document, see Comment methods
+
+  def add_document(name, contributor):
+    return documentmethods.add(name, contributor)
+	
+  def delete_document(id):
+    return documentmethods.delete(id)
+	
+  def edit_document(id, page, contributor):
+    return documentmethods.edit(id, page, contributor)
+	
+  def set_document_property(id, property, value):
+    result = True
+    if property = "interests":
+	  result = result and usermethods.setproperty(id, interest, value)
+    if property = "made_in_part_by":
+	  result = result and usermethods.setproperty(id, contributor, value)
+    result = result and documentmethods.setproperty(id, property, value)
+    return result
+	
+  def get_document(id):
+    return documentmethods.get(id)
+
+  def get_document_property(id, property):
+    return documentmethods.getproperty(id, property)
+	
+	
+### User methods:
+#
+# For methods to get the comments on or by a user, see Comment methods
+	
+  def add_user(name, password):
+    return usermethods.add(name, password)
+	
+  def delete_user(id):
+    return usermethods.delete(id)
+	
+  def set_user_property(id, property, value):
+    result = True
+    if property = "interest":
+	  result = result and documentmethods.setproperty(id, interests, value)
+    if property = "contributor":
+	  result = result and documentmethods.setproperty(id, made_in_part_by, value)
+    result = result and usermethods.setproperty(id, property, value)
+    return result
+	
+  def get_user(id):
+    return usermethods.get(id)
+
+  def get_user_property(id, property):
+    return usermethods.getproperty(id, property)
+	
+### Search methods:	
+  def search_document(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	# returnt een array [document]
+    return searchmethods.documents(*args)
+	
+  def search_user(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	# returnt een array [user]
+    return searchmethods.users(*args)
+
+	
+### Tag methods:
+#	
+# Add a tag by calling set_{type}_property
+  
+  def create_tag(tag, document):
+    return tagmethods.add(tag, document)
+	
+  def delete_tag(tag, document):
+    return tagmethods.delete(tag, document)
+	
+	
+### Comment methods:		
+  def add_comment_user(comment, id, poster_id):
+    return commentmethods.add(comment, id, poster_id)
+	
+  def add_comment_document(comment, document, poster_id):
+    return commentmethods.add(comment, document, poster_id)
+	
+  def remove_comment(id):
+    return commentmethods.remove(id)	
+
+  def get_comments_on_user(id):
+    return commentmethods.commentsonuser(id)
+
+  def get_comments_on_document(id):
+    return commentmethods.commentsondocument(id)
+
+  def get_comments_by_user(id):
+	return commentsmethods.commentsbyuser(id)
+	
+  
+

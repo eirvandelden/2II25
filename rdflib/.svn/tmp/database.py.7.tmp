@@ -1,0 +1,247 @@
+##########################################################
+## 
+## Imports
+##
+##########################################################
+
+  # Class imports
+import usermethods
+#import documentmethods
+import searchmethods
+import tagmethods
+import commentmethods
+
+  # rdf imports
+import rdflib  
+from rdflib.Namespace import Namespace
+from rdflib import Literal
+from rdflib.Graph import ConjunctiveGraph as Graph
+
+##########################################################
+## 
+## Global Declarations
+##
+##########################################################
+
+edocol = Namespace("http://edocol.com/namespace/1.0/")
+ns = dict(edocol=edocol)
+
+##########################################################
+## 
+## Global Functions
+##
+##########################################################
+
+def latestid():
+  """ pre: true
+      post: return int, such that int > \forall id \in \PageID's """
+  results = g.query("""
+                  SELECT ?id 
+                  WHERE {?id edocol:type 'document' . }""", 
+                  initNs=ns)
+  results.sort()
+  results.reverse()
+  return results.pop() 
+    
+def latestvid(pageid):
+  """ pre: pageid 
+      post: return int, such that int > \forall id \in \VersionID's"""
+  results = g.query("""
+                    SELECT ?vid
+                    WHERE { ?id edocol:version ?vid .}""",
+                    initNs=ns)
+  results.sort()
+  results.reverse()
+  return results.pop()
+
+##########################################################
+## 
+## Class: Database
+##
+##########################################################
+
+class database():
+  """
+  Generally {type}methods-functions return a succes-boolean, and nothing else; 'get'-functions and search-functions are exceptions to this.
+
+  For the creators of {type}methods-modules:
+  Complementary properties are:
+  {user1} follows {user2 of tag} - {user2 of tag} followed_by {user1}
+  {user} interest {document} - {document} interests {user}
+  {user} owner {document} - {document} owned_by {user}
+  {user} contributor {document} - {document} contributed_to_by {user}
+  
+  """
+
+### initialisatie
+  def __init__():
+	# TODO: zoeken naar hoogste huidige ID
+    # Read g from the database
+    store = rdflib.plugin.get('SQLite', rdflib.store.Store)('databes.ts')# Use SQLite3 to read database.ts
+    try:                                                            # try opening the database
+        store.open('', create=True)                                 # create a new database
+    except:
+        store.open('', create=False)                                # open an existing databse
+    g = Graph(store)                                                # assign database to g
+    
+  def latestid():
+    """ pre: true
+        post: return int, such that int > \forall id \in \PageID's """
+    results = g.query("""
+                  SELECT ?id 
+                  WHERE {?id edocol:type "document" . }""", 
+                  initNs=ns)
+    results.sort()
+    results.reverse()
+    return results.pop() 
+    
+  def latestvid(pageid):
+    """ pre: pageid 
+        post: return int, such that int > \forall id \in \VersionID's"""
+    results = g.query("""
+                      SELECT ?vid
+                      WHERE { pageid edocol:version ?vid .}""",
+                      initNs=ns)
+    results.sort()
+    results.reverse()
+    return results.pop()
+ 
+  def latestuserid():
+    """ pre: true
+        post: return int, such that int > \forall id \in \UserID's """
+    results = g.query("""
+                  SELECT ?id 
+                  WHERE {?id edocol:type "person" . }""", 
+                  initNs=ns)
+    results.sort()
+    results.reverse()
+    return results.pop() 
+    
+### Document methods:
+#
+# For methods to get the comments on a document, see Comment methods
+
+  ##########################################################
+  ##
+  ## Methods: Document
+  ##
+  ## (For methods to get the comments on a document, see Comment methods)
+  ##########################################################
+  """ Used shorthands:
+    pid: person identifier
+    did: document identifier"""
+
+  def new_document(pid, owner, time):
+    return documentmethods.new(pid, owner, time)
+	
+  def edit_document(did, time, content, pid, pid_contributor):
+    return documentmethods.edit(did, time, content, pid, pid_contributor)
+	
+  def delete_document(did):
+    return documentmethods.delete(did)
+
+  def get_contributors(did):
+    return documentmethods.contributors(did)
+
+  def add_contributors(did, pid):
+    return documentmethods.add_contri(did, pid)
+  
+  def remove_contributors(did, pid):
+    return documentmethods.remove_contri(did, pid)
+	
+  #def set_document_property(id, property, value):
+  #  return documentmethods.setproperty(id, property, value)
+	
+  #def delete_document_property_value(id, property, value):
+  #  return documentmethods.deletepropertyvalue(id, property, value)
+    
+  def get_document(id):
+    return documentmethods.get(id)
+
+  #def get_document_property(id, property):
+  #  return documentmethods.getproperty(id, property)	
+	
+  def get_document_version(id, version):
+    return documentmethods.getversion(id, version)	
+
+  #def get_document_version_property(id, version, property):
+  #  return documentmethods.getversionproperty(id, version, property)	
+	
+  def interest_in_document(user_id, document_id):
+	return usermethods.interest(user_id, document_id)	
+	
+### User methods:
+#
+# For methods to get the comments on or by a user, see Comment methods
+	
+  def new_user(name, password):
+    return usermethods.new(name, password)
+	
+  def delete_user(id):
+    return usermethods.delete(id)
+	
+  def set_user_property(id, property, value):
+    return usermethods.setproperty(id, property, value)
+
+  def delete_user_property_value(id, property, value):
+    return usermethods.deletepropertyvalue(id, property, value)
+	
+  def get_user(id):
+    return usermethods.get_all_info(id)
+
+  def get_user_property(id, property):
+    return usermethods.getproperty(id, property)
+	
+  def follow_user(follower_id, followed_id):
+	return usermethods.follow(follower_id, followed_id)
+	
+### Search methods:	
+  def search_document(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	  # returnt een array [document]
+    return searchmethods.documents(*args)
+	
+  def search_user(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	  # returnt een array [user]
+    return searchmethods.users(*args)
+
+	
+### Tag methods:
+#	
+# Add a tag to a document by calling set_{type}_property
+  
+  def create_tag(tag, document):
+    return tagmethods.add(tag, document)
+	
+  def delete_tag(tag, document):
+    return tagmethods.delete(tag, document)
+	
+  def follow_tag(id, tag):
+    return tagmethods.follow(id, tag)
+
+	
+### Comment methods:		
+  def add_comment_user(comment, id, poster_id):
+    return commentmethods.add(comment, id, poster_id)
+	
+  def add_comment_document(comment, document, poster_id):
+    return commentmethods.add(comment, document, poster_id)
+	
+  def remove_comment(id):
+    return commentmethods.remove(id)	
+
+  def get_comments_on_user(id):
+	# returnt een array [comment]  
+    return commentmethods.commentsonuser(id)
+
+  def get_comments_on_document(id):
+	# returnt een array [comment] 
+    return commentmethods.commentsondocument(id)
+
+  def get_comments_by_user(id):
+	# returnt een array [comment] 
+	return commentsmethods.commentsbyuser(id)
+	
+  
+

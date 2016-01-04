@@ -1,0 +1,25 @@
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/name> "Anson".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email> "anson@aol.co.uk".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/password> "abcd".
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/owner> <http://edocol.com/namespace/1.0/0>.
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/name> "Algoritmiek".
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/type> "document".
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/content> "P=NP".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/name> "George".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email> "2ii25@tue.nl".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/password> "a3ta3".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/owner> <http://edocol.com/namespace/1.0/1>.
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/name> "Business Information systems".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/type> "document".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/content> "Petri netten, schiet!".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/name> "Etienne".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email> "etienne@edocol.com".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/password> "000".
+<http://edocol.com/documents/1.0/2> <http://edocol.com/documents/1.0/owner> <http://edocol.com/namespace/1.0/2>.
+<http://edocol.com/documents/1.0/2> <http://edocol.com/documents/1.0/name> "WebTechnologie".
+<http://edocol.com/documents/1.0/2> <http://edocol.com/documents/1.0/type> "document".
+<http://edocol.com/documents/1.0/2> <http://edocol.com/documents/1.0/content> "RDFlib sucked!".
+

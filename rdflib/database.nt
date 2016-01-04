@@ -1,0 +1,18 @@
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/name> "My first new page!".
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/content> "test2".
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/owner> <http://edocol.com/namespace/1.0/0>.
+<http://edocol.com/documents/1.0/0> <http://edocol.com/documents/1.0/type> "document".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email3> <http://edocol.com/namespace/1.0/com>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/password> <http://edocol.com/namespace/1.0/password>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email2> <http://edocol.com/namespace/1.0/edin>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email1> <http://edocol.com/namespace/1.0/edin>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/type> <http://edocol.com/namespace/1.0/person>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/name> <http://edocol.com/namespace/1.0/edin>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/follows> <http://edocol.com/namespace/1.0/1>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email3> <http://edocol.com/namespace/1.0/com>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/password> <http://edocol.com/namespace/1.0/password>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email2> <http://edocol.com/namespace/1.0/anson>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email1> <http://edocol.com/namespace/1.0/anson>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/type> <http://edocol.com/namespace/1.0/person>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/name> <http://edocol.com/namespace/1.0/anson>.
+

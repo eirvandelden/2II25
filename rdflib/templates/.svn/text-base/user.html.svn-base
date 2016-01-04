@@ -1,0 +1,117 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+    % if user.exists:
+        <h1>User <a href="/user/${user.id}/${user.name}/">${user.name}</a></h1>
+        <%
+            import server
+            loggedin = server.loggedin()
+            cookie = server.readCookie()
+            if loggedin:
+                cid = cookie['id'].value
+        %>
+        % if loggedin and user.id == cid:
+            <p>
+            <a href="/user/edit/${user.id}/">
+                Edit my user details
+            </a>
+            </p>
+        % elif loggedin and user.id <> cid:
+            <%
+                luser = server.user(cid) 
+                follow = 0
+                for id in luser.follows:
+                    if str(user.id) == str(id):
+                        follow = 1
+            %>
+            % if follow:
+                <p><a href="/follow/doUnfollow/${user.id}/">Unfollow user</a></p>
+            % else:
+                <p><a href="/follow/doFollow/${user.id}/">Follow user</a></p>
+            % endif
+            
+        % endif
+        <table>
+            <tr>
+                <td class="userpage-tdlo">Username:</td>
+                <td class="userpage-tdro"><strong>${user.name}</strong></td>
+            </tr>
+            <tr>
+                <td class="userpage-tdle">Email:</td>
+                <td class="userpage-tdre"><strong>${user.email}</strong></td>
+            </tr>
+            <%
+                nrpages = str(len(user.pages))
+            %>
+            <tr>
+                <td class="userpage-tdle">Pages:</td>
+                <td class="userpage-tdre"><strong>${nrpages}</strong></td>
+            </tr>
+            <tr>
+                <td class="userpage-tdlo">ID:</td>
+                <td class="userpage-tdro"><strong>${user.id}</strong></td>
+            </tr>
+            <tr>
+                <td class="userpage-tdlo">Password:</td>
+                <td class="userpage-tdro"><strong>${user.password}</strong></td>
+            </tr>
+        </table>
+        % if nrpages != '0':
+        <a name="pages"></a>
+        <h2>All pages created by <a href="/user/${user.id}/${user.name}/">${user.name}</a></h2>
+            <%
+                pages = user.pages
+                pages.sort()
+            %>
+            % for i in pages:
+                <table>
+                    <tr>
+                        <%
+                            p = server.page(i)
+                        %>
+                        <td><a href="page/${i}">${p.name}</a></td>
+                    </tr>
+                </table>
+            % endfor
+            
+        % else:
+            <p>The user has not published any sites yet.</p>
+        % endif
+        <a name="following"></a>
+        <h2>Following users (${len(user.follows)})</h2>
+        % if len(user.follows) > 0:
+            <table>
+            % for f in user.follows:
+                <%
+                    u = server.user(str(f))
+                %>
+
+                <tr>
+                    <td><a href="/user/${u.id}/">${u.name}</a></td>
+                </tr>
+            % endfor
+            </table>
+        % else:
+            <p>This user does not follow any user (yet)</p>
+        % endif
+    % else:
+        <h1>Non-existant user</h1>
+        <p>This user does not exist! You can <a href="/search/users/">search for users</a> if you are trying to find someone.
+    % endif
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

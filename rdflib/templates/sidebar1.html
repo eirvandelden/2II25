@@ -1,0 +1,52 @@
+<%
+    import server
+    loggedin = server.loggedin()
+    cookie = server.readCookie()
+    nrkeys = len(cookie.keys())
+    if loggedin:
+        u = server.user(cookie['id'].value)
+%>
+
+% if nrkeys > 0:
+    % if loggedin:
+        <h3>User profile</h3>        
+            <p>Welcome <strong><a href="/user/${u.id}/${u.name}/">${u.name}</a></strong>!</p>
+            <table>
+                <tr>
+                    <td><strong>Pages:</strong></td>
+                    <td><a href="/user/${u.id}/${u.name}/#pages">${str(len(u.pages))}</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Following:</strong></td>
+                    <td><a href="/user/${u.id}/${u.name}/#following">${str(len(u.follows))}</a></td>
+                </tr>
+                <!--
+                <tr>
+                    <td><strong>Followers:</strong></td>
+                    <td>0</td>
+                </tr>
+                -->
+            </table>
+           
+            <form method="post" action="/login/doLogout/">
+              <input type="submit" value="Logout" />
+            </form>
+    % else:
+        <h3>Login</h3>
+            <p>Wrong username or password. <a href="/login/doLogout/">Logout</a> and then login again.</p>
+    % endif
+% else:
+    <h3>Login</h3>
+        <form method="post" action="/login/doLogin">
+          <label>
+            Email:
+            <input type="text" name="email" value="" />
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password" value="" />
+          </label>
+          <input type="submit" value="Login" />
+        </form>
+        <p>You can <a href="/register/">register</a> if you don't have an account yet.</p>
+% endif

@@ -1,0 +1,38 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+        <h1>User registration</h1>
+        <form id="newpage" name="newpage" method="post" action="/register/doRegister/">
+            <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="username" id="username" size="50" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password" id="password" size="50" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" name="email" id="email" size="50" /></td>
+            </tr>
+            </table>
+            <input id="register" type="submit" value="Register" />
+        </form>
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

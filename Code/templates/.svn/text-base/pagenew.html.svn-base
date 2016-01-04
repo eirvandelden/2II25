@@ -1,0 +1,59 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+    % if loggedin:
+        <h1>Create a new page</h1>
+        <form id="newpage" name="newpage" method="post" action="/page/newsave/">
+        <table>
+        <tr>
+            <td>Page title:</td>
+            <td><input type="text" name="title" id="title" size="50" /></td>
+        </tr>
+        <tr>
+            <td>Tags:</td>
+            <td><input type="text" name="title" id="title" size="50" /></td>
+        </tr>
+        <tr>
+            <td><font size="-2">(sep. by whitespace. ex.: "algorithm distributed")</font></td>
+            <td></td>
+        <tr>
+        </table>
+        <h2>Content</h2>
+            <hr />
+            <p>
+            <form id="form2" name="form2" method="post" action="">
+                <label>
+                <textarea name="content" id="content" cols="77" rows="30"></textarea>
+                </label>
+            </form>
+            </p>
+            <div align="right">
+
+
+            <div align="right">
+            <label>
+              <input type="submit" id="edit" value="Save new page" />
+            </label>
+            </div>
+            <hr />
+    % else:
+        <h1>Login required</h1>
+        <p>You have to login before you can create a page. If you do not have an account yet, then please <a href="/register/">register</a>.
+    % endif
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

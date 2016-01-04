@@ -1,0 +1,30 @@
+<table width="100%" border="0">
+  <tr>
+    <td width="30%" height="100px">
+      <!--<h1 class="style1"><a href="#">${sitename}</a></h1>-->
+      <a href="#"><img src="images/logo.png" /><br /></a>
+      ${subtitle}<br />
+      <font size="-2">Current version: ${version}</font>
+    </td>
+    <td width="70%" align="right">
+    <%
+        import server
+        loggedin = server.loggedin()
+        if loggedin:
+            cookie = server.readCookie()
+            u = server.user(str(cookie['id'].value))
+    %>
+    % if loggedin:
+        <a href="/">Home</a> |
+        <a href="/user/${u.id}/${u.name}/">My user page</a> |
+        <a href="/user/edit/${u.id}/${u.name}/">Edit my user details</a> |
+        <a href="/page/new/">Create a new page</a>
+    % else:
+        <a href="/register/">Create a new account</a>
+    % endif
+      <!--
+      <input name="search" type="text" value="Search.." tabindex="1" onfocus="if (this.value=='Search..') this.value = ''" />
+      -->
+    </td>
+  </tr>
+</table>

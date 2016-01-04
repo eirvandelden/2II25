@@ -1,0 +1,13 @@
+<table width="100%" border="0">
+  <tr>
+    <td width="30%" height="100px">
+      <!--<h1 class="style1"><a href="#">${sitename}</a></h1>-->
+      <a href="#"><img src="images/logo.png" /><br /></a>
+      ${subtitle}<br />
+      <font size="-2">Current version: ${version}</font>
+    </td>
+    <td width="70%" align="right">
+      <input name="search" type="text" value="Search.." tabindex="1" onfocus="if (this.value=='Search..') this.value = ''" />
+    </td>
+  </tr>
+</table>

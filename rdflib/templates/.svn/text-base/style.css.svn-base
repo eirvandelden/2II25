@@ -1,0 +1,121 @@
+body  {
+	font: 100% Verdana, Arial, Helvetica, sans-serif;
+	background: #FFFFFF;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: #000000;
+	font-size:14px;
+}
+
+.thrColElsHdr #mainContent table {
+    width: 100%;
+    /*background: #DAE4EF;*/
+}
+
+/* <td>-left even */
+.thrColElsHdr td.userpage-tdle {
+    background: #DAE4EF;
+    text-align: right;
+    width: 100px;
+}
+/* <td>-left odd */
+.thrColElsHdr td.userpage-tdlo {
+    background: #DAE4EF;
+    text-align: right;
+    width: 100px;
+}
+/* <td>-right even */
+.thrColElsHdr td.userpage-tdre {
+    text-align: left;
+}
+/* <td>-right odd */
+.thrColElsHdr td.userpage-tdro {
+    text-align: left;
+}
+
+.thrColElsHdr #mainContent hr {
+    border: 1px dashed #CCCCCC;
+}
+.thrColElsHdr #mainContent a.largelink {
+    font-size: 20px;
+}
+
+.thrColElsHdr #header img {
+    border: 0px;
+}
+
+.thrColElsHdr #container { 
+	width: 70em;
+	background: #FFFFFF;
+	margin: 0 auto;
+	border: 0px solid #000000;
+	text-align: left;
+} 
+.thrColElsHdr #header {
+	width: 100%;
+	height: 100px;
+	background: #FFFFFF; 
+	padding: 0 0px;
+} 
+.thrColElsHdr #header1 {
+	width: 30%;
+	height: 80px;
+}
+.thrColElsHdr #header2 {
+	width: 70%;
+	height: 80px;
+	text-align:right;
+    position:relative;
+}
+.thrColElsHdr #header h1 {
+	margin: 0;
+	padding: 10px 0;
+}
+
+.thrColElsHdr #sidebar1 {
+	float: left; 
+	width: 12em;
+	background: #FFFFFF;
+	padding: 15px 0;
+}
+.thrColElsHdr #sidebar2 {
+	float: right; 
+	width: 12em;
+	background: #FFFFFF;
+	padding: 15px 0;
+}
+.thrColElsHdr #sidebar1 h3, .thrColElsHdr #sidebar1 p, .thrColElsHdr #sidebar2 p, .thrColElsHdr #sidebar2 h3 {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.thrColElsHdr #mainContent {
+	width: 46em;
+ 	margin: 0 12em 0 12em;
+} 
+.thrColElsHdr #footer { 
+	padding: 0 10px;
+	background:#FFFFFF;
+} 
+.thrColElsHdr #footer p {
+	margin: 0;
+	padding: 10px 0;
+}
+
+
+.fltrt {
+	float: right;
+	margin-left: 8px;
+}
+.fltlft {
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat {
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+.style1 {color: #0066CC}

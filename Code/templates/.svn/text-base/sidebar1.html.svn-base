@@ -1,0 +1,48 @@
+<%
+    import server
+    cookie = server.readCookie()
+    nrkeys = len(cookie.keys())
+    username='user'
+    password='pass'
+%>
+    <p><font size="-2">Test username: <strong>${username}</strong></font></p>
+    <p><font size="-2">Test password: <strong>${password}</strong></font></p>
+% if nrkeys > 0:
+    <% # Check user and password
+    %>
+    % if (cookie['user'].value == username) and (cookie['pass'].value == password):
+        <h3>User profile</h3>        
+            <p>Welcome <strong><a href="/user/0/user/">${username}</a></strong>!</p>
+            <table>
+                <tr>
+                    <td><strong>Pages:</strong></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td><strong>Followers:</strong></td>
+                    <td>0</td>
+                </tr>
+            </table>
+           
+            <form method="post" action="/login/doLogout/">
+              <input type="submit" value="Logout" />
+            </form>
+    % else:
+        <h3>Login</h3>
+            <p>Wrong username or password. <a href="/login/doLogout/">Logout</a> and then login again.</p>
+    % endif
+% else:
+    <h3>Login</h3>
+        <form method="post" action="/login/doLogin">
+          <label>
+            Username:
+            <input type="text" name="username" value="" />
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password" value="" />
+          </label>
+          <input type="submit" value="Login" />
+        </form>
+        <p>You can <a href="/register/">register</a> if you don't have an account yet.</p>
+% endif

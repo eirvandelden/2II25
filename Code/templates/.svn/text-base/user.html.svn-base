@@ -1,0 +1,52 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+    % if user.exists:
+        <h1>User ${user.name}</h1>
+        % if loggedin:
+            <p>
+            <a href="/user/edit/${user.id}/">
+                <input type="submit" name="button" value="Edit" />
+            </a>
+            </p>
+        % endif
+        <table>
+            <tr>
+                <td class="userpage-tdlo">Username:</td>
+                <td class="userpage-tdro"><strong>${user.name}</strong></td>
+            </tr>
+            <tr>
+                <td class="userpage-tdle">Pages:</td>
+                <td class="userpage-tdre"><strong>0</strong></td>
+            </tr>
+            <tr>
+                <td class="userpage-tdlo">ID:</td>
+                <td class="userpage-tdro"><strong>${user.id}</strong></td>
+            </tr>
+        </table>
+        % if '1'=='0':
+        <h2>All pages of user ${username}</h2>
+        % else:
+            <p>The user has not published any sites yet.</p>
+        % endif
+    % else:
+        <h1>Non-existant user</h1>
+        <p>This user does not exist! You can <a href="/search/users/">search for users</a> if you are trying to find someone.
+    % endif
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

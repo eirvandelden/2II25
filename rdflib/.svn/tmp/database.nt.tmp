@@ -1,0 +1,50 @@
+<<<<<<< .mine
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email> "qwer@qwer.qwer".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/name> "anson".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/password> "11".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/content> "".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/owner> "0"^^<http://www.w3.org/2001/XMLSchema#integer>.
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/type> "document".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/name> "datastructuren".
+<http://edocol.com/documents/1.0/1> <http://edocol.com/documents/1.0/contributed_to_by> "0"^^<http://www.w3.org/2001/XMLSchema#integer>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/name> "Etienne".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/documents/1.0/owned_by> "1".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/documents/1.0/contributor> "1".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email> "hlfptze@edocol.com".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/name> "hlfptze".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/password> "0000".
+
+=======
+<http://edocol.com/namespace/1.0/6> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/6> <http://edocol.com/namespace/1.0/password> "0000".
+<http://edocol.com/namespace/1.0/6> <http://edocol.com/namespace/1.0/email> "irqtxr@edocol.com".
+<http://edocol.com/namespace/1.0/6> <http://edocol.com/namespace/1.0/name> "irqtxr".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/tag> <http://edocol.com/namespace/1.0/foo>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/name> "Etienne".
+<http://edocol.com/namespace/1.0/3> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/3> <http://edocol.com/namespace/1.0/password> "0000".
+<http://edocol.com/namespace/1.0/3> <http://edocol.com/namespace/1.0/email> "kwaypwtru@edocol.com".
+<http://edocol.com/namespace/1.0/3> <http://edocol.com/namespace/1.0/name> "kwaypwtru".
+<http://edocol.com/namespace/1.0/4> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/4> <http://edocol.com/namespace/1.0/password> "0000".
+<http://edocol.com/namespace/1.0/4> <http://edocol.com/namespace/1.0/email> "jrvrfaqkvm@edocol.com".
+<http://edocol.com/namespace/1.0/4> <http://edocol.com/namespace/1.0/name> "jrvrfaqkvm".
+<http://edocol.com/namespace/1.0/5> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/5> <http://edocol.com/namespace/1.0/password> "0000".
+<http://edocol.com/namespace/1.0/5> <http://edocol.com/namespace/1.0/email> "rzrekc@edocol.com".
+<http://edocol.com/namespace/1.0/5> <http://edocol.com/namespace/1.0/name> "rzrekc".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/password> "0000".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email> "hlfptze@edocol.com".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/name> "hlfptze".
+<http://edocol.com/namespace/1.0/foo> <http://edocol.com/namespace/1.0/type> "tag".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/type> "person".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/password> "11".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email> "qwer@qwer.qwer".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/name> "anson".
+
+>>>>>>> .r134

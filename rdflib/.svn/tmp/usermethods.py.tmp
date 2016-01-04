@@ -1,0 +1,258 @@
+### User methods:
+#
+# For methods to get the comments on or by a user, see Comment methods
+#
+# Al die 'does exist'? prec assertions kosten misschien een hoop rekentijd.. misschien maar verwijderen als de boel te langzaam wordt.
+#
+# Overal geldt preconditie 'inputs zijn strings', en 'id is integer', tenzij anders vermeld.
+<<<<<<< .mine
+
+import globals
+
+=======
+     
+import re            
+      
+	
+>>>>>>> .r106
+#######################################################################            
+# hulpfunctie            
+def latestuserid():
+  """ pre: true
+      post: return int, such that int > \forall id \in \UserID's """
+  results = g.query("""
+                SELECT ?id 
+                WHERE {?id edocol:type "person" . }""", 
+                initNs=ns).serialize(format="python")            
+  results.sort()
+  return results.pop() 
+
+#######################################################################  
+# beetje een vieze parse-functie: dit kan vast veel netter, en met ingebouwde functies ipv deze improvisatie
+def parse_values(results):
+  # initialisatie
+  out = []
+  parsed = []
+  read = False
+  inside = False
+  
+  # pak alle waarden
+  for char in results:
+    if char == ">":
+      read = True
+    elif char == "<":
+      read = False
+      inside = False
+    else: 
+      if (read == True) and (inside == False):
+        out = out + [""]
+        out[len(out)-1] = out[len(out)-1] + char
+        inside = True
+      elif (read == True) and (inside == True):
+        out[len(out)-1] = out[len(out)-1] + char  
+  
+  # verwijder wat standaardspul  
+  for o in out:
+    if not (o == "\n"):
+      parsed = parsed + [o]
+  
+  # verwijder de naam van de namespace
+  out = []
+  for p in parsed:
+    q = p.split ("/")
+    r = q.pop()
+    out = out + [r]
+  
+  return  out 
+  
+  
+#######################################################################
+# voeg een nieuwe user toe  
+def new(name, password, email):
+  """ 
+  pre: name is unique, email is unique
+  post: db contains a user with name name and password password and a unique, never-used-before ID
+  output: the user's unique ID
+  """
+
+  # precondition checks
+  for obj in (name, password):										
+    assert isinstance(obj, str), 'Argument(s) of wrong type!'		# are these strings?
+    
+  assert re.match("^([a-zA-Z0-9_%+-]|([a-zA-Z0-9_%+-]+[a-zA-Z0-9._%+-][a-zA-Z0-9_%+-]+))@([a-zA-Z0-9_%+-]|([a-zA-Z0-9_%+-]+[a-zA-Z0-9._%+-][a-zA-Z0-9_%+-]+))[.][a-zA-Z]{2,6}$", email), 'not a valid email address'
+    
+  assert ( g.subjects('name', name) <> [] ), 'Name is already taken'	# is the name taken?
+
+  # add new user
+  id = latestuserid()										                        # TODO: new ID
+  g.add((Literal(id+1), edocol["type"], Literal("person") )) 		# add the person
+  g.add((Literal(id), edocol["name"], Literal(name) ))				  # add the name
+  g.add((Literal(id), edocol["email"], Literal(email) ))				  # add the email address  
+  
+  # lol, not a very good idea:
+  g.add( (Literal(id), edocol["password"], Literal(password)) ) # add the password
+
+  return id+1		
+
+#######################################################################
+# verander de waarde van een 1-waarde-eigenschap van een user (bijexample zn naam)
+def setpropertyvalue(id, property, value):
+  """ 
+  pre: id is a userid in the database, property is a property in the namespace
+  post: (id, property, value) is in the database, and is the only value for (id, property, ?v)
+  output: True
+  """  
+  
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'	
+  assert isinstance(property, str), 'Argument of wrong type!'	
+  assert isinstance(value, str), 'Argument of wrong type!'	
+
+  assert g.predicate_objects(id) <> [], 'User unknown'	        # is id an existing user?    
+    
+  # no assertion of existence of property: we don't care enough (yet).
+  
+  # so adding is still a bit rough.  
+  g.set( (Literal(id), edocol[property], Literal(value)) )    
+  
+  return True 
+  
+#######################################################################
+# add a value to a multi-value property of a user ( for ex. diplomas)
+def addpropertyvalue(id, property, value):
+  """ 
+  pre: id is a userid in the database, property is a property in the namespace
+  post: (id, property, value) is in the database
+  output: True
+  
+  this is _not_ Graph.set: old values aren't deleted.
+  """
+
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'	
+  assert isinstance(property, str), 'Argument of wrong type!'	
+  assert isinstance(value, str), 'Argument of wrong type!'
+
+  assert g.predicate_objects(id) <> [], 'User unknown'	        # is id an existing user?    
+    
+  # no assertion of existence of property: we don't care enough (yet).
+  
+  # so adding is still a bit rough.  
+  g.add( (Literal(id), edocol[property], Literal(value)) )    
+  
+  return True
+
+#######################################################################
+# ask for a (list of) value(s) of a property
+def getpropertyvalue(id, property):
+  """ 
+  pre: id is a userid in the database
+  post: True
+  output: all values from triples (id, property, value), or nil if there is none
+  """
+  
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'		    # is this a string?			           
+  
+  # find all info on property of user id
+  results = g.query("""
+                SELECT ?value 
+                WHERE {%s edocol:%s ?value . }""" % (id, property), 
+                initNs=ns).serialize(outformat)         
+    
+  if results == []:                                             # any info at all?
+    assert ( g.predicate_objects(id) <> [] ), 'User does not exist or does not have property'
+  
+  return parse_values(results)
+
+#######################################################################
+# follow a user: doesn't have much use yet, but will.
+def follow(follower_id, followed_id):
+  """ 
+  pre: follower_id and followed_id are in the database
+  post: (follower_id, "follows", followed_id) and (followed_id, "followed_by", follower_id) are in the database
+  output: True
+  """
+  
+  for obj in (follower_id, followed_id):										
+    assert isinstance(obj, int), 'Argument(s) of wrong type!'		  # are these strings?  
+  
+  assert ( g.predicate_objects(follower_id) <> [] ), 'Follower does not exist'	# does follower exist?
+  assert ( g.predicate_objects(followed_id) <> [] ), 'Followed does not exist'	# does followed exist?  
+
+  g.add((follower_id, edocol["follows"], followed_id)) 
+  g.add((followed_id, edocol["followed_by"], follower_id))  
+  
+  return True
+
+#######################################################################
+# delete a user and all outgoing relationships, but not the ingoing ones.
+def delete(id):
+  """ 
+  pre: id is a user in the database
+  post: all properties of the form (id, x, y) are gone.
+  output: True
+  """		
+  
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'		    # is this a string?					            
+  
+  # find all properties of user id
+  targets = g.query( """
+                SELECT ?id ?p ?v 
+                WHERE { %s ?p ?v .
+                        ?id ?p ?v .}""" % id, 
+                initNs=ns).serialize('python')   
+      
+                                                          
+  assert targets <> [], 'User does not exist'                 # is id an existing user?
+  
+  # deletes all references from user (including all data) while leaving references to the id intact.   
+  for row in targets:
+    g.remove(row)
+    
+  return True
+
+#######################################################################
+# remove 1 value of a property of a user
+def deletepropertyvalue(id, property, value):
+  """ 
+  pre: (id, property, value) is in the database
+  post: (id, property, value) is not in the database
+  output: True
+  """    
+  
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'	
+  assert isinstance(property, str), 'Argument of wrong type!'	
+  assert isinstance(value, str), 'Argument of wrong type!'
+
+  assert ( g.triples( (id, edocol[property], value) ) <> [] ), 'Given Property does not have given Value for given user' # exists?
+                                                              
+  # toevoegen
+  g.remove( (id, edocol[property], value) )  
+  
+  return True 
+
+#######################################################################
+# get all information about a user (the output is a bit messy)
+def getallinfo(id):
+  """ 
+  pre: id is a userid in the database
+  post: True
+  output: a list of tuples (property, value) containing all information about the user
+  """
+  
+  # precondition checks	
+  assert isinstance(id, int), 'Argument of wrong type!'		    # is this a string?					            
+  
+  # find all properties of user id
+  results = g.query( """
+                SELECT ?id ?p ?v 
+                WHERE { %s ?p ?v .
+                        ?id ?p ?v .}""" % id, 
+                initNs=ns).serialize(outformat)                                                   
+                                                          
+  assert results <> [], 'User does not exist'                 # is id an existing user?
+  
+  return parse_values(results)

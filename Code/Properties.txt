@@ -1,0 +1,20 @@
+Een overzicht van eigenschappen van de verschillende types data, van de vorm:
+'(amount) property [type of value]'
+
+user properties:
+
+(one unique) ID [integer]
+(one) name [string]
+(one) password [string]
+(one unique) email [formatted string]
+(zero, one or multiple) follows [user]
+(zero, one or multiple) followedby [user]
+(zero, one or multiple) interest [document]
+
+document properties:
+
+(one unique) ID [integer]
+(one) owner [user]
+(zero, one or multiple) contributor [user]
+(zero, one or multiple) interests [user]
+(zero, one or multiple) version [content]

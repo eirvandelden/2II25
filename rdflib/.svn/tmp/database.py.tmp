@@ -1,0 +1,57 @@
+######################
+#   imports
+######################
+
+  # RDF imports
+from sparta import ThingFactory
+from rdflib import ConjuctiveGraph as Graph
+from rdflib import Namespace
+
+  # Class imports
+import usermethods
+import pagemethods
+import searchmethods
+
+######################
+#   Class
+######################
+class database():
+
+  def __init__("usermethods", "pagemethods", "searchmethods"):
+    g = Graph()
+	# TODO: inlezen database
+	# TODO: zoeken naar hoogste huidge ID
+
+	
+  def add_page(name):
+    pagemethods.add(name)
+	
+  def delete_page(id):
+    pagemethods.delete(id)
+	
+<<<<<<< .mine
+  def edit_page(id, ):
+    pagemethods.edit(id)=======
+  def edit_page(id, page):
+    pagemethods.edit(id, page)
+	
+  def add_user(name, password):
+    usermethods.add(name, password)
+	
+  def delete_user(id):
+    usermethods.delete(id)
+	
+  def edit_user(id, user):
+    usermethods.edit(id, user)
+	
+  def search_user(*args):
+    # geef args van de vorm
+    searchmethods.users(*args)
+	
+  def search_page(*args):
+    searchmethods.pages(*args)
+	
+	
+  
+
+>>>>>>> .r37

@@ -1,0 +1,97 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+    <h1>Welcome to ${sitename}!</h1>
+    <p>The project is currently in its early alpha stage! The current version of the project is <strong>${version}</strong>.</p>
+    <h2>Authors</h2>
+    <ul>
+    % for author in authors:
+        <li>${author}
+    % endfor
+    </ul>
+
+    % if len(main.lastpages) > 0:
+        <h1>Last ${len(main.lastpages)} pages</h1>
+            <table>
+                <% import server %>
+                    <tr>
+                        <td><strong>Page name</strong></td>
+                        <td><strong>Created by</strong></td>
+                    </tr>
+                % for pid in main.lastpages:
+                    <tr>
+                        <% p = server.page(str(pid)) %>
+                        <td><a href="/page/${p.id}/${p.name}/">${p.name}</a></td>
+                        <td><a href="/user/${p.ownerid}/${p.ownername}/">${p.ownername}</a></td>
+                    </tr>
+                % endfor
+            </table>
+    % else:
+        <h1>Last pages</h1>
+            <p>There are no pages yet. Be the first one to <a href="/page/new/">create one</a>!
+    % endif
+    
+    <h1>Examples</h1>
+        <ul>
+            <li><a href="/page/new/">Create new Page</a>
+            <li><a href="/page/0/Some+pagename">View some page</a>
+            <li><a href="/page/edit/0/Some+pagename">Edit some page</a>
+            <!--<li><a href="/user/1/chimp/">User page</a>-->
+            <li><a href="/user/edit/1/chimp/">Edit some user</a>
+            <li><a href="/register/">Registration</a>
+            <!--<li><a href="/search/">Search</a>-->
+            
+        </ul>
+
+    <h1>TODO's</h3>
+        <%
+            import todos
+        %>
+        <h2>Front-end</h2>
+            <table>
+                % for todo in todos.front_end:
+                <tr>
+                    <td>${todo[0]}</td>
+                    % if todo[1] == 'done':
+                        <td style="background:#00FF00;">${todo[1]}</td>
+                    % elif todo[1] == 'not done':
+                        <td style="background:#FF0000;">${todo[1]}</td>
+                    % else:
+                        <td style="background:#FFCC00;">${todo[1]}</td>
+                    % endif
+                <tr>
+                % endfor
+            </table>
+        <h2>Back-end</h2>
+        <table width="500px">
+            % for todo in todos.back_end:
+            <tr>
+                <td>${todo[0]}</td>
+                % if todo[1] == 'done':
+                    <td style="background:#00FF00;">${todo[1]}</td>
+                % elif todo[1] == 'not done':
+                    <td style="background:#FF0000;">${todo[1]}</td>
+                % else:
+                    <td style="background:#FFCC00;">${todo[1]}</td>
+                % endif
+            <tr>
+            % endfor
+        </table>
+
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

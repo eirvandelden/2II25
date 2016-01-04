@@ -1,0 +1,19 @@
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email3> <http://edocol.com/namespace/1.0/com>.
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email1> <http://edocol.com/namespace/1.0/kittens>.
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/password> "123abc".
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/type> <http://edocol.com/namespace/1.0/person>.
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/email2> <http://edocol.com/namespace/1.0/gmail>.
+<http://edocol.com/namespace/1.0/2> <http://edocol.com/namespace/1.0/name> "anon".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email3> <http://edocol.com/namespace/1.0/eu>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email1> <http://edocol.com/namespace/1.0/eiji>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/password> "geheim".
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/type> <http://edocol.com/namespace/1.0/person>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/email2> <http://edocol.com/namespace/1.0/sashiba>.
+<http://edocol.com/namespace/1.0/1> <http://edocol.com/namespace/1.0/name> "etienne".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email3> <http://edocol.com/namespace/1.0/com>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email1> <http://edocol.com/namespace/1.0/ikmailanson>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/password> "wachtwoord".
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/type> <http://edocol.com/namespace/1.0/person>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/email2> <http://edocol.com/namespace/1.0/gmail>.
+<http://edocol.com/namespace/1.0/0> <http://edocol.com/namespace/1.0/name> "anson".
+

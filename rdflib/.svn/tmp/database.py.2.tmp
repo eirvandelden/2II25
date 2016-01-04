@@ -1,0 +1,70 @@
+######################
+#   Imports
+######################
+
+  # Class imports
+import usermethods
+import documentmethods
+import searchmethods
+import tagmethods
+import commentmethods
+
+######################
+#   Declarations
+######################
+foaf = Namespace("http://xmlns.com/foaf/0.1/")
+
+######################
+#   Class
+######################
+
+class database():
+
+  def __init__("usermethods", "pagemethods", "searchmethods"):
+	# TODO: inlezen database
+	# TODO: zoeken naar hoogste huidge ID
+	
+  def add_document(name, contributor):
+    documentmethods.add(name, contributor)
+	
+  def delete_document(id):
+    documentmethods.delete(id)
+	
+  def edit_document(id, page, contributor):
+    documentmethods.edit(id, page, contributor)
+	
+  def add_user(name, password):
+    usermethods.add(name, password)
+	
+  def delete_user(id):
+    usermethods.delete(id)
+	
+  def edit_user(id, user):
+    usermethods.edit(id, user)
+	
+  def search_user(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	# returnt een array [user]
+    return searchmethods.users(*args)
+	
+  def search_page(*args):
+    # geef args van de vorm (eigenschap, waarde)
+	# returnt een array [page]
+    return searchmethods.pages(*args)
+	
+  def add_tag(tag, document):
+    tagmethods.add(tag, document)
+	
+  def remove_tag(tag, document):
+    tagmethods.remove(tag, document)
+	
+  def add_comment_user(comment, user):
+    commentmethods.add(comment, user)
+	
+  def add_comment_document(comment, document):
+    commentmethods.add(comment, document)
+	
+	
+	
+  
+

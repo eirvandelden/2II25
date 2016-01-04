@@ -1,0 +1,43 @@
+<body class="thrColElsHdr">
+
+<div id="container">
+  <div id="header">
+    ${header}
+  </div>
+  <div id="sidebar1">
+    ${sidebar1}
+  <!-- end #sidebar1 --></div>
+  <div id="sidebar2">
+    ${sidebar2}
+    <!-- end #sidebar2 --></div>
+  <div id="mainContent">
+    % if page.id=='0':
+        <h1><a href="/page/${page.id}/${page.name}">${page.name}</a></h1>
+        <p>Page created by <strong><a href="/user/${page.ownerid}/${page.ownername}/">${page.ownername}</a></strong></p>
+
+        <h2>Content</h2>
+        % if page.content<>'':
+            <hr />
+            <p>${page.content}</p>
+            <div align="right">
+            <form id="form1" name="form1" method="post" action="/page/edit/${page.id}/">
+              <label>
+                <input type="submit" id="edit" value="Edit" />
+              </label>
+            </form>
+            </div>
+            <hr />
+        % else:
+            <p>The content is empty.</p>
+        % endif
+    % else:
+        <h1>Non-existant page</h1>
+        <p>This page does not exist! You can <a href="/search/pages/">search for pages</a> if you are trying to find some specific topic.
+    % endif
+  </div>
+	<!-- This clearing element should immediately follow the #mainContent div in order to force the #container div to contain all child floats --><br class="clearfloat" />
+   <div id="footer">
+     ${footer}
+  <!-- end #footer --></div>
+<!-- end #container --></div>
+</body>

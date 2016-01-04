@@ -1,0 +1,27 @@
+users:
+/user/231/etienne-van-delden/
+pages:
+/page/132/web-technology/
+# categories:
+# /cat/23/courses/
+tags:
+/tag/23/courses/
+
+searching all:
+/search/test
+searching users:
+/users/search/etienne+delden
+searching pages:
+/page/search/algoritms
+#searching categories
+#/cat/search/assignments
+
+comments:
+/comments/1234/
+/page/132/#comments
+rss feeds:
+/rss/4223/
+
+
+
+user = db.user(231)
